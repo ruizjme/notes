@@ -1,0 +1,15 @@
+{% extends "common.html" %}
+
+{% block body %}
+
+<h1 class="notes-title toc-left relative z-1 absolute pa4 is-position-fixed no-print">{{notes_title}}</h1>
+<nav class="toc toc-left js-toc relative z-1 transition--300 absolute pa4 is-position-fixed no-print"></nav>
+<div class="content js-toc-content pa4">{{md}}</div>
+
+<footer>
+  <h2>Need some help?</h2>
+  <p>These notes are a work in progress. Taken by Jaime Ruiz at Swinburne University in 2019.</p>
+  <p>Find me on Twitter <a href="https://twitter.com/ruizjme_">@ruizjme_</a></p>
+</footer>
+
+{% endblock %}

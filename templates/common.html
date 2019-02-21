@@ -1,0 +1,57 @@
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <title>{{notes_title}}</title>
+
+  <!-- JQuery -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+  <!-- MathJax -->
+  <script type="text/javascript" async
+          src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML" async></script>
+
+  <!-- HighlightJS -->
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.14.2/styles/default.min.css">
+  <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.14.2/highlight.min.js"></script>
+
+  <!-- Dynamic table of contents -->
+  <link rel="stylesheet" href="https://unpkg.com/tachyons@4.7.0/css/tachyons.min.css"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.4.2/tocbot.css">
+  <link rel="stylesheet" href="{{S3_URL}}/static/css/tocbot_style.css">
+
+  <!-- Style CSS -->
+  <link rel="stylesheet" href="{{S3_URL}}/static/css/style.css">
+
+</head>
+<body>
+  {% block body %}{% endblock %}
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.4.2/tocbot.min.js"></script>
+
+  <script type="text/javascript">
+  window.onload = function() {
+
+    // Add id attribute to all headers for tocbot
+    var headingArray = ["h1","h2","h3"]
+    for(var i=0, hN; hN = headingArray[i]; i++) {
+      var tags = document.getElementsByTagName(hN);
+      for (var j=0, hNM; hNM = tags[j]; j++) {
+        hNM.id = hNM.innerHTML.toLowerCase().replace(/ /g, "-");
+      }
+    }
+
+    tocbot.init({
+      tocSelector: '.js-toc',
+      contentSelector: '.js-toc-content',
+      headingSelector: headingArray.join(", "),
+      orderedList: false,
+      collapseDepth: 2,
+    });
+  };
+
+  hljs.initHighlightingOnLoad();
+
+  </script>
+</body>
+</html>

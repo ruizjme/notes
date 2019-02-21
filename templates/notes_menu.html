@@ -1,0 +1,20 @@
+{% extends "common.html" %}
+
+{% block body %}
+
+<h1 class="notes-title toc-left relative z-1 absolute pa4 is-position-fixed no-print">{{notes_title}}</h1>
+
+
+<div>
+   {% for k,v in notes_dict.iteritems() %}
+   <a href="{{ v }}">{{ k }}</a><br>
+   {% endfor  %}
+</div>
+
+<footer>
+  <h2>Need some help?</h2>
+  <p>These notes are a work in progress. Taken by Jaime Ruiz at Swinburne University in 2019.</p>
+  <p>Find me on Twitter <a href="https://twitter.com/ruizjme_">@ruizjme_</a></p>
+</footer>
+
+{% endblock %}

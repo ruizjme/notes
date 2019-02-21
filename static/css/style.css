@@ -1,0 +1,122 @@
+body {
+font-size: 0.9rem;
+}
+
+.content {
+  max-width: 1000px;
+}
+
+.content h1 {
+font-size: 32px;
+font-weight: bold;
+margin: 0 0 20px 0;
+
+width:100%;
+border-top:     3px solid #000;
+border-bottom:  3px solid #000;
+padding: 10px 0 10px 0;
+
+page-break-before: always;
+page-break-after: avoid;
+
+}
+
+.content h2 {
+font-size: 28px;
+font-weight: bold;
+margin: 1.5em 0 1.5em 0;
+
+width:100%;
+border-bottom: 2px solid #000;
+padding: 20px 0 8px 0;
+
+page-break-after: avoid;
+}
+
+.content h3 {
+font-size: 22px;
+font-weight: bold;
+margin: 1.5em 0 1.5em 0;
+text-decoration: underline;
+
+page-break-after: avoid;
+}
+
+.content h3::before {
+content: "/// ";
+}
+
+.content h4 {
+font-size: 20px;
+font-weight: bold;
+margin: 1.5em 0 1.5em 0;
+text-decoration: underline;
+
+page-break-after: avoid;
+}
+
+img {
+max-height: 300px;
+display: block;
+margin: auto;
+}
+
+table {
+margin: auto;
+margin-bottom: 20px;
+padding: 10px;
+border: 1px solid #ddd;
+}
+
+.toc {
+margin-top: 34px;
+/* font-size: 18px; */
+/* -webkit-column-count: 2;
+-moz-column-count: 2;
+column-count: 2; */
+}
+
+.toc-list-item {
+  font-size: 0.9rem;
+  line-height: 1.3rem;
+  white-space: nowrap;
+}
+
+.is-active-link::before {
+  background-color: #AEEA00;
+}
+
+.notes-title {
+  padding-top: 0.5rem;
+  font-size: 1.5rem;
+  white-space: nowrap;
+}
+
+footer {
+  /* position: relative; */
+  background: #222222;
+  color: #F2F2F2;
+  text-align: center;
+  z-index: 1000;
+  padding: 50px 25px;
+}
+
+footer a {
+  color: #AEEA00;
+}
+
+@media print
+{
+    .no-print, .no-print *
+    {
+        display: none !important;
+    }
+}
+
+blockquote {
+  background: #f9f9f9;
+  border-left: 10px solid #ccc;
+  margin: 1.5em 10px;
+  padding: 0.5em 10px;
+  quotes: "\201C""\201D""\2018""\2019";
+}
