@@ -12,14 +12,13 @@ S3_URL = "https://s3-ap-southeast-2.amazonaws.com/notes-static-content"
 
 
 def list_notes():
-    """List all available notes with their respective URL"""
+    """List all available notes with their respective path"""
     s3 = boto3.resource('s3')
     bucket = s3.Bucket(BUCKET_NAME)
     file_list = []
     for obj in bucket.objects.filter(Prefix="content/"):
          file_list.append(obj.key)
-    notes_dict = { ''.join(i.split('/')[-1].split('.')[:-1]).replace('_',' ').title() : ''.join(i.split('/')[-1].split('.')[:-1]) for i in file_list }
-    return notes_dict
+    return file_list
 
 @app.route("/")
 def index():
@@ -52,8 +51,10 @@ def notes(notes_title):
                                         math=True,
                                         math_explicit=True,
                                         footnotes=False,
-                                        smartypants=False,
-                                        tables=True)
+                                        smartypants=True,
+                                        tables=True,
+                                        # wrap=True,
+                                        hard_wrap=True)
         else:
             md = r.text
 
@@ -62,6 +63,5 @@ def notes(notes_title):
         md = e
 
     notes_title = notes_title.replace("_"," ").title()
-    notes_dict = list_notes()
 
     return render_template('notes_page.html', S3_URL=S3_URL, **locals())

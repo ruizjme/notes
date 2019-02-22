@@ -1,3 +1,5 @@
+#!/usr/bin/env python
+
 import boto3
 import os
 import glob
@@ -7,7 +9,7 @@ import sys
 Upload note content to S3 in order to serve it. Content includes:
 
     - Markdown notes (.md)
-    - PNG images (.png)
+    - Images in assets/ (.png)
 
 """
 
