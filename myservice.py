@@ -1,11 +1,12 @@
-import boto3
-from flask import Flask, jsonify, render_template, request, session
-import flask_misaka
-import re
-import glob
-import requests
+#!/usr/bin/env python
+
 import boto3
 import collections
+from flask import Flask, jsonify, render_template, request, session
+import flask_misaka
+import glob
+import re
+import requests
 
 app = Flask(__name__)
 BUCKET_NAME = 'notes-static-content'
