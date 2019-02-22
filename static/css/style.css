@@ -153,3 +153,21 @@ blockquote {
   color: #AEEA00;
   content: " 🤖"
 }
+
+#go-to-menu {
+  text-decoration: none;
+  color: #CCCCCC;
+  font-size: 0.7rem;
+  z-index: 9999;
+  position: fixed;
+  bottom: 10px;
+  right: 10px;
+  padding: 10px 10px 10px 10px;
+  -webkit-transition: color 0.4s;
+  transition: color 0.4s;
+}
+
+#go-to-menu:hover {
+  text-decoration: none;
+  color: #AEEA00;
+}
