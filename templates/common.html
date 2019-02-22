@@ -12,23 +12,22 @@
           src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML" async></script>
 
   <!-- HighlightJS -->
-  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.14.2/styles/default.min.css">
-  <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.14.2/highlight.min.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.14.2/styles/default.min.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.14.2/highlight.min.js"></script>
 
-  <!-- Dynamic table of contents -->
+  <!-- TocBot -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.4.2/tocbot.min.js"></script>
   <link rel="stylesheet" href="https://unpkg.com/tachyons@4.7.0/css/tachyons.min.css"/>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.4.2/tocbot.css">
   <link rel="stylesheet" href="{{S3_URL}}/static/css/tocbot_style.css">
 
-  <!-- Style CSS -->
+  <!-- Custom CSS -->
   <!-- <link rel="stylesheet" href="{{S3_URL}}/static/css/style.css"> -->
   <link rel="stylesheet" href="/static/css/style.css">
 
 </head>
 <body>
   {% block body %}{% endblock %}
-
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.4.2/tocbot.min.js"></script>
 
   <script type="text/javascript">
   window.onload = function() {
