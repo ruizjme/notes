@@ -21,12 +21,8 @@ def list_notes():
          file_list.append(obj.key)
     return file_list
 
-@app.route("/")
+@app.route("/", methods=["GET"])
 def index():
-    return "Index page! Coming soon."
-
-@app.route("/notes/", methods=["GET"])
-def notes_menu():
     file_list = list_notes()
     notes_dict = {}
     for f in file_list:
@@ -42,7 +38,7 @@ def notes_menu():
     return render_template('notes_menu.html', S3_URL=S3_URL, **locals())
 
 # returns HTML from given template
-@app.route("/notes/<string:notes_title>/", methods=["GET"])
+@app.route("/<string:notes_title>/", methods=["GET"])
 def notes(notes_title):
     try:
         r = requests.get('{}/content/{}.md'.format(S3_URL, notes_title))
