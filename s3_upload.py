@@ -2,38 +2,13 @@ import boto3
 import os
 import glob
 
-def upload_static_content_DEPRECATED(bucket_name, dir_='static'):
-    '''Uploads all files in static/ to given S3 bucket and makes them public'''
-    s3 = boto3.resource('s3')
+"""
+Upload note content to S3 in order to serve it. Content includes:
 
-    file_list = []
-    for path, dirs, files in os.walk(dir_):
-        for file in files:
-                file_list.append(os.path.join(path, file))
+    - Markdown notes (.md)
+    - PNG images (.png)
 
-    content_type = {'md':'text/markdown; charset=utf-8',
-                    'py':'text/x-python',
-                    'css':'text/css',
-                    'js':'application/javascript',
-                    'json':'application/json',
-                    'png':'image/png',
-                    'gif':'image/gif',
-                    'jpeg':'image/jpeg',
-                    'jpg':'image/jpg',
-                    'jpeg':'image/jpeg',
-                    'pdf':'application/pdf',
-                    }
-
-    bucket = s3.Bucket(bucket_name)
-    for file_name in file_list:
-      # s3.upload_file(file_name, bucket_name, file_name)
-        file_ext = file_name.split('.')[-1].lower()
-        bucket.upload_file(file_name, file_name,
-                            ExtraArgs={'ContentType': content_type.get(file_ext,'text/plain'),
-                                        'ACL': 'public-read'})
-
-        print file_name, bucket.Object(file_name).content_type
-
+"""
 
 def upload_static_content(bucket_name, file_list, target_dir='content'):
     '''Uploads all files in list to S3 bucket and makes them public'''
@@ -72,10 +47,10 @@ def list_files(source_dir='/Users/Jaime/Documents/BHERM/notes', extension='md'):
 #     bucket_acl = s3.BucketAcl(bucket_name)
 #     response = bucket_acl.put(ACL='public-read')
 
-def list_all_objects(bucket_name):
-    s3 = boto3.resource('s3')
-    bucket = s3.Bucket(bucket_name)
-    return [obj.key for obj in bucket.objects.all()]
+# def list_all_objects(bucket_name):
+#     s3 = boto3.resource('s3')
+#     bucket = s3.Bucket(bucket_name)
+#     return [obj.key for obj in bucket.objects.all()]
 
 # def make_objects_public(bucket_name):
 #     s3 = boto3.resource('s3')

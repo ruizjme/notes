@@ -2,12 +2,18 @@
 
 Automation to render my university notes as a webpage.
 
-Notes written in Markdown using Atom:
+## Dependencies
+
+Notes written in `markdown` using `atom`:
 
 * [markdown-preview-plus](https://atom.io/packages/markdown-preview-plus)
 * [atom-image-assistant](https://atom.io/packages/markdown-image-assistant)
 
-Stored in `AWS S3` and rendered with `Python` in `AWS Lambda`:
+Stored in `AWS S3` and rendered with `python` in `AWS Lambda`:
+
+* Deployed with [Zappa](https://www.zappa.io/)
+
+Python packages:
 
 * [Flask-Misaka](https://flask-misaka.readthedocs.io/en/latest/)
 
