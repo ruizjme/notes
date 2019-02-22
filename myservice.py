@@ -5,6 +5,7 @@ import re
 import glob
 import requests
 import boto3
+import collections
 
 app = Flask(__name__)
 BUCKET_NAME = 'notes-static-content'
@@ -35,6 +36,7 @@ def notes_menu():
                                 notes_title)
         notes_dict[notes_title] = ''.join(f.split('/')[-1].split('.')[:-1])
 
+    notes_dict = collections.OrderedDict(sorted(notes_dict.items()))
     notes_title = "Notes"
     return render_template('notes_menu.html', S3_URL=S3_URL, **locals())
 
