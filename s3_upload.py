@@ -1,6 +1,7 @@
 import boto3
 import os
 import glob
+import sys
 
 """
 Upload note content to S3 in order to serve it. Content includes:
@@ -63,10 +64,15 @@ def list_files(source_dir='/Users/Jaime/Documents/BHERM/notes', extension='md'):
 if __name__ == '__main__':
     BUCKET_NAME = 'notes-static-content'
 
-    # Upload MarkDown files
-    files = list_files('/Users/Jaime/Documents/BHERM/notes/', 'md')
-    upload_static_content(BUCKET_NAME, files, target_dir='content/')
+    if len(sys.argv) > 1 and sys.argv[1] == 'css':
+        files = list_files('/Users/Jaime/Documents/Development/Python/notes/static/css/', 'css')
+        upload_static_content(BUCKET_NAME, files, target_dir='static/css/')
 
-    # Upload images
-    files = list_files('/Users/Jaime/Documents/BHERM/notes/assets/', 'png')
-    upload_static_content(BUCKET_NAME, files, target_dir='static/img/')
+    else:
+        # Upload MarkDown files
+        files = list_files('/Users/Jaime/Documents/BHERM/notes/', 'md')
+        upload_static_content(BUCKET_NAME, files, target_dir='content/')
+
+        # Upload images
+        files = list_files('/Users/Jaime/Documents/BHERM/notes/assets/', '*')
+        upload_static_content(BUCKET_NAME, files, target_dir='static/img/')

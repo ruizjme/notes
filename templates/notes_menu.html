@@ -2,10 +2,9 @@
 
 {% block body %}
 
-<h1 class="notes-title toc-left relative z-1 absolute pa4 is-position-fixed no-print">{{notes_title}}</h1>
+<!-- <h1 class="notes-title toc-left relative absolute pa4 is-position-fixed no-print">{{notes_title}}</h1> -->
 
-
-<div>
+<div id="notes-menu">
    {% for k,v in notes_dict.iteritems() %}
    <a href="{{ v }}">{{ k }}</a><br>
    {% endfor  %}

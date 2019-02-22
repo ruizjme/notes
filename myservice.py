@@ -10,21 +10,30 @@ app = Flask(__name__)
 BUCKET_NAME = 'notes-static-content'
 S3_URL = "https://s3-ap-southeast-2.amazonaws.com/notes-static-content"
 
+
+def list_notes():
+    """List all available notes with their respective URL"""
+    s3 = boto3.resource('s3')
+    bucket = s3.Bucket(BUCKET_NAME)
+    file_list = []
+    for obj in bucket.objects.filter(Prefix="content/"):
+         file_list.append(obj.key)
+    notes_dict = { ''.join(i.split('/')[-1].split('.')[:-1]).replace('_',' ').title() : ''.join(i.split('/')[-1].split('.')[:-1]) for i in file_list }
+    return notes_dict
+
 @app.route("/")
 def index():
     return "Index page! Coming soon."
 
 @app.route("/notes/", methods=["GET"])
 def notes_menu():
-    # FIXME: read from s3 bucket
-    prefix = "content/"
     s3 = boto3.resource('s3')
     bucket = s3.Bucket(BUCKET_NAME)
     file_list = []
-    for obj in bucket.objects.filter(Prefix=prefix):
+    for obj in bucket.objects.filter(Prefix="content/"):
          file_list.append(obj.key)
     notes_dict = { ''.join(i.split('/')[-1].split('.')[:-1]).replace('_',' ').title() : ''.join(i.split('/')[-1].split('.')[:-1]) for i in file_list }
-    # print notes_dict
+    notes_title = "Notes"
     return render_template('notes_menu.html', S3_URL=S3_URL, **locals())
 
 # returns HTML from given template
@@ -53,5 +62,6 @@ def notes(notes_title):
         md = e
 
     notes_title = notes_title.replace("_"," ").title()
+    notes_dict = list_notes()
 
     return render_template('notes_page.html', S3_URL=S3_URL, **locals())

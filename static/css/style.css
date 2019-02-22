@@ -93,22 +93,22 @@ column-count: 2; */
 }
 
 footer {
-  /* position: relative; */
+  /* position: absolute; */
   background: #222222;
   color: #F2F2F2;
   text-align: center;
   z-index: 1000;
   padding: 50px 25px;
+  bottom: 0;
+  width: 100%;
 }
 
 footer a {
   color: #AEEA00;
 }
 
-@media print
-{
-    .no-print, .no-print *
-    {
+@media print {
+    .no-print, .no-print * {
         display: none !important;
     }
 }
@@ -119,4 +119,11 @@ blockquote {
   margin: 1.5em 10px;
   padding: 0.5em 10px;
   quotes: "\201C""\201D""\2018""\2019";
+}
+
+#notes-menu {
+  padding: 1em;
+  line-height: 1.5em;
+  margin: 45px 18px;
+  z-index: 999999;
 }
