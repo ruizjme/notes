@@ -7,7 +7,7 @@
 <div id="notes-menu">
   <ul>
     {% for k,v in notes_dict.iteritems() %}
-      <a href="{{ v }}"><li>{{ k }}</li></a>
+      <a href="{{ v[0] }}"><li class="{{ v[1] }}">{{ k }}</li></a>
     {% endfor  %}
   </ul>
 </div>

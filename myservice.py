@@ -34,7 +34,8 @@ def notes_menu():
         notes_title = re.sub(   r'^([a-z]{3})([0-9]{5})',
                                 lambda match: match.group(0).upper(),
                                 notes_title)
-        notes_dict[notes_title] = ''.join(f.split('/')[-1].split('.')[:-1])
+        marker_id = 'current-subject' if notes_title[3] in ['3','4'] else ''
+        notes_dict[notes_title] = (''.join(f.split('/')[-1].split('.')[:-1]), marker_id)
 
     notes_dict = collections.OrderedDict(sorted(notes_dict.items()))
     notes_title = "Notes"
@@ -67,6 +68,9 @@ def notes(notes_title):
         # output the exception to be rendered
         md = e
 
-    notes_title = notes_title.replace("_"," ").title()
+    notes_title = notes_title.replace("_"," ").lower()
+    notes_title = re.sub(   r'^([a-z]{3})([0-9]{5})',
+                            lambda match: match.group(0).upper(),
+                            notes_title)
 
     return render_template('notes_page.html', S3_URL=S3_URL, **locals())
