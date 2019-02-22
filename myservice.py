@@ -26,12 +26,15 @@ def index():
 
 @app.route("/notes/", methods=["GET"])
 def notes_menu():
-    s3 = boto3.resource('s3')
-    bucket = s3.Bucket(BUCKET_NAME)
-    file_list = []
-    for obj in bucket.objects.filter(Prefix="content/"):
-         file_list.append(obj.key)
-    notes_dict = { ''.join(i.split('/')[-1].split('.')[:-1]).replace('_',' ').title() : ''.join(i.split('/')[-1].split('.')[:-1]) for i in file_list }
+    file_list = list_notes()
+    notes_dict = {}
+    for f in file_list:
+        notes_title = ''.join(f.split('/')[-1].split('.')[:-1]).replace('_',' ').lower()
+        notes_title = re.sub(   r'^([a-z]{3})([0-9]{5})',
+                                lambda match: match.group(0).upper(),
+                                notes_title)
+        notes_dict[notes_title] = ''.join(f.split('/')[-1].split('.')[:-1])
+
     notes_title = "Notes"
     return render_template('notes_menu.html', S3_URL=S3_URL, **locals())
 

@@ -123,17 +123,17 @@ blockquote {
 
 #notes-menu {
   padding: 1em;
-  margin: 45px 18px;
+  margin: 45px 0 30px 20px;
   z-index: 999999;
-  height: 90%;
   width: 90%;
 }
 
 #notes-menu li {
   list-style-type: none;
-  line-height: 3em;
-  /* border-top: 1px solid #999; */
-  padding-left: 1em;
+  padding-left: 1rem;
+  line-height: 2.5rem;
+  font-size: 1rem;
+  font-family: 'Roboto Mono', monospace;
 }
 
 #notes-menu li:hover {
