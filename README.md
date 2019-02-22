@@ -28,4 +28,4 @@ Sources:
 * [Infra tutorial](https://medium.freecodecamp.org/how-to-create-a-serverless-service-in-15-minutes-b63af8c892e5)
 * [Code tutorial](https://pythonspot.com/flask-web-app-with-python/)
 
-Example [here](https://nnconv4jg1.execute-api.ap-southeast-2.amazonaws.com/dev/notes/machine_dynamics/) :point_left:
+Example [here](https://notes.ruizj.me/) :point_left:
