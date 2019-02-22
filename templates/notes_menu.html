@@ -5,9 +5,11 @@
 <!-- <h1 class="notes-title toc-left relative absolute pa4 is-position-fixed no-print">{{notes_title}}</h1> -->
 
 <div id="notes-menu">
-   {% for k,v in notes_dict.iteritems() %}
-   <a href="{{ v }}">{{ k }}</a><br>
-   {% endfor  %}
+  <ul>
+    {% for k,v in notes_dict.iteritems() %}
+      <a href="{{ v }}"><li>{{ k }}</li></a>
+    {% endfor  %}
+  </ul>
 </div>
 
 {% endblock %}
