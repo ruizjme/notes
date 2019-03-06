@@ -78,11 +78,10 @@ if __name__ == '__main__':
     else:
         # Upload MarkDown files
         files = list_files('/Users/Jaime/Documents/BHERM/notes/', 'md')
-        # upload_static_content(BUCKET_NAME, files, target_dir='content/')
+        upload_static_content(BUCKET_NAME, files, target_dir='content/')
 
         # Upload images
         local_files = [f.split('/').pop() for f in list_files('/Users/Jaime/Documents/BHERM/notes/assets/', '*')]
         cloud_files = [f.split('/').pop() for f in list_files_in_bucket(BUCKET_NAME, prefix='static/img/')]
         files = set(local_files) - set(cloud_files) # only upload images that are not yet in the bucket
-        print files
-        # upload_static_content(BUCKET_NAME, files, target_dir='static/img/')
+        upload_static_content(BUCKET_NAME, files, target_dir='static/img/')
