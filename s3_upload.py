@@ -44,6 +44,11 @@ def list_files(source_dir='/Users/Jaime/Documents/BHERM/notes', extension='md'):
     files = glob.glob(source_dir+'/*.'+extension)
     return files
 
+def list_files_in_bucket(bucket_name, prefix='static/img'):
+    s3 = boto3.resource('s3')
+    bucket = s3.Bucket(bucket_name)
+    return [object.key for object in bucket.objects.filter(Prefix=prefix)]
+
 # def make_bucket_public(bucket_name):
 #     '''Makes entire bucket public'''
 #     s3 = boto3.resource('s3')
@@ -73,8 +78,11 @@ if __name__ == '__main__':
     else:
         # Upload MarkDown files
         files = list_files('/Users/Jaime/Documents/BHERM/notes/', 'md')
-        upload_static_content(BUCKET_NAME, files, target_dir='content/')
+        # upload_static_content(BUCKET_NAME, files, target_dir='content/')
 
         # Upload images
-        files = list_files('/Users/Jaime/Documents/BHERM/notes/assets/', '*')
-        upload_static_content(BUCKET_NAME, files, target_dir='static/img/')
+        local_files = [f.split('/').pop() for f in list_files('/Users/Jaime/Documents/BHERM/notes/assets/', '*')]
+        cloud_files = [f.split('/').pop() for f in list_files_in_bucket(BUCKET_NAME, prefix='static/img/')]
+        files = set(local_files) - set(cloud_files) # only upload images that are not yet in the bucket
+        print files
+        # upload_static_content(BUCKET_NAME, files, target_dir='static/img/')
