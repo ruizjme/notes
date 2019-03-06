@@ -82,6 +82,8 @@ if __name__ == '__main__':
 
         # Upload images
         local_files = [f.split('/').pop() for f in list_files('/Users/Jaime/Documents/BHERM/notes/assets/', '*')]
+        local_files_prefix = os.path.dirname(list_files('/Users/Jaime/Documents/BHERM/notes/assets/', '*')[0])
         cloud_files = [f.split('/').pop() for f in list_files_in_bucket(BUCKET_NAME, prefix='static/img/')]
         files = set(local_files) - set(cloud_files) # only upload images that are not yet in the bucket
+        files = [os.path.join(local_files_prefix, f) for f in files]
         upload_static_content(BUCKET_NAME, files, target_dir='static/img/')
